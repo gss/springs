@@ -1,7 +1,7 @@
 
 #window.chromatose = require 'chromatose'
 
-Springs = require 'springs'
+Springs = require 'gss-springs'
 
 springs = new Springs()
 

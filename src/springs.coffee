@@ -65,10 +65,10 @@ class Springs
     @springsByEvent = {}
     @springSystem = new rebound.SpringSystem()
 
-    #document.addEventListener 'DOMContentLoaded', ->
-    document.body.addEventListener upEvt, () ->
-      for spring in @springsByEvent.click
-        spring.setEndValue 0
+    document.addEventListener 'DOMContentLoaded', =>
+      document.body.addEventListener upEvt, () =>
+        for spring in @springsByEvent.click
+          spring.setEndValue 0
 
     if window.addEventListener
         addEventListener('DOMContentLoaded', @checkInViews, false)

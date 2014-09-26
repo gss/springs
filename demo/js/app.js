@@ -1,6 +1,6 @@
 var Springs, render, setupSprings, springs;
 
-Springs = require('springs');
+Springs = require('gss-springs');
 
 springs = new Springs();
 

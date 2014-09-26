@@ -52,7 +52,7 @@ require.define = function (name, exports) {
     exports: exports
   };
 };
-require.register("facebook~rebound-js@0.0.8", function (exports, module) {
+require.register("facebook~rebound-js@v0.0.8", function (exports, module) {
 // Rebound
 // =======
 // **Rebound** is a simple library that models Spring dynamics for the
@@ -1075,11 +1075,11 @@ require.register("facebook~rebound-js@0.0.8", function (exports, module) {
 
 });
 
-require.register("springs", function (exports, module) {
+require.register("gss-springs", function (exports, module) {
 var CustomEvent, Springs, bind, concat, createSpring, downEvt, extend, mapValueFromRangeToRange, rebound, slice, upEvt,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-rebound = require('facebook~rebound-js@0.0.8');
+rebound = require('facebook~rebound-js@v0.0.8');
 
 /*
 changeFriction = (val) ->
@@ -1157,18 +1157,21 @@ Springs = (function() {
   function Springs() {
     this.applySpringValue = __bind(this.applySpringValue, this);
     this.checkInViews = __bind(this.checkInViews, this);
+    var _this = this;
     this.springs = [];
     this.springsByEvent = {};
     this.springSystem = new rebound.SpringSystem();
-    document.body.addEventListener(upEvt, function() {
-      var spring, _i, _len, _ref, _results;
-      _ref = this.springsByEvent.click;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        spring = _ref[_i];
-        _results.push(spring.setEndValue(0));
-      }
-      return _results;
+    document.addEventListener('DOMContentLoaded', function() {
+      return document.body.addEventListener(upEvt, function() {
+        var spring, _i, _len, _ref, _results;
+        _ref = _this.springsByEvent.click;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          spring = _ref[_i];
+          _results.push(spring.setEndValue(0));
+        }
+        return _results;
+      });
     });
     if (window.addEventListener) {
       addEventListener('DOMContentLoaded', this.checkInViews, false);
@@ -1365,8 +1368,8 @@ module.exports = Springs;
 
 });
 
-require.define("springs/component.json", {
-  "name": "springs",
+require.define("gss-springs/component.json", {
+  "name": "gss-springs",
   "description": "",
   "author": "Dan Tocchini <d4@thegrid.io>",
   "repo": "gss/springs",
@@ -1378,11 +1381,11 @@ require.define("springs/component.json", {
     "lib/springs.js"
   ],
   "dependencies": {
-    "facebook/rebound-js": "0.0.8"
+    "facebook/rebound-js": "v0.0.8"
   },
   "main": "lib/springs.js",
   "license": "MIT"
 }
 );
 
-require("springs")
+require("gss-springs")

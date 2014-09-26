@@ -11,7 +11,7 @@
     "lib/springs.js"
   ],
   "dependencies": {
-    "facebook/rebound-js": "0.0.8"
+    "facebook/rebound-js": "v0.0.8"
   },
   "main": "lib/springs.js",
   "license": "MIT"
