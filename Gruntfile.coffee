@@ -10,36 +10,36 @@ fs = require 'fs'
 getPalette = (sourceImage, colorCount, quality) ->
   colorCount = 10  if typeof colorCount is "undefined"
   quality = 10  if typeof quality is "undefined"
-  
+
   # Create custom CanvasImage object
   image = new CanvasImage(sourceImage)
   imageData = image.getImageData()
   pixels = imageData.data
   pixelCount = image.getPixelCount()
   palette = @getPaletteFromPixels(pixels, pixelCount, colorCount, quality)
-  
+
   # Clean up
   image.removeCanvas()
   palette
 
 
 module.exports = ->
-  
+
   grunt = @
-  
+
   # Project configuration
   @initConfig
     pkg: @file.readJSON 'package.json'
-    
+
     componentbuild:
-      'springs':
+      'gss-springs':
         options:
-          name: 'springs'
+          name: 'gss-springs'
         src: '.'
         dest: 'browser'
         scripts: true
         styles: false
-    
+
     # JavaScript minification for the browser
     uglify:
       options:
@@ -90,31 +90,31 @@ module.exports = ->
     # BDD tests on browser
     mocha_phantomjs:
       all: ['spec/runner.html']
-      
-    
+
+
   @registerTask 'colors', 'Extract Colors', () ->
     #imgs = fs.readdirSync wd
     #for img in imgs
-    #  
+    #
     #  colorThief = new ColorThief()
     #  console.log colorThief.getColor "./demo/img/" + img
-    
+
     images = []
-    
+
     grunt.file.recurse wd, (abspath, rootdir, subdir, filename) ->
       colorThief = new ColorThief()
-      #console.log abspath 
+      #console.log abspath
       colorThief.getPalette "./" + abspath, 5, 10, (colors)->
         abs = abspath.split('/')
-        img =  
+        img =
           url:'./img/' + abs[abs.length - 1]
-          colors:[] 
+          colors:[]
         for color in colors
           img.colors.push "rgb(#{color[0]},#{color[1]},#{color[2]})"
         images.push img
-    
+
     grunt.file.write output, "window.DEMO_DATA = {images:" + JSON.stringify( images, 1, 1) + "};"
-      
+
     #grunt.file.write output+"/manifest.json", JSON.stringify( manifest, 1, 1)
     #grunt.file.write output+"/manifest.yml", yaml.safeDump manifest
 
