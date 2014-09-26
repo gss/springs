@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Chromatose demooo</title>
+    <script src="js/vendor/coffee-script.js"></script>
+    <script src="js/vendor/ect.min.js"></script>
+
+    <!--script src="../vendor/rebound/rebound.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../vendor/rebound/util.js" type="text/javascript" charset="utf-8"></script-->
+    <script src="../browser/springs.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+  </head>
+  <body>
+    <style>
+    .color {
+      text-align: center;
+      float: left;
+      clear: left;
+      font-size: 9px;
+      font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+      width: 80px;
+    }
+    .palette {
+      position: absolute;
+      left: -205px;
+      display:none;
+    }
+    .inview .box {
+      opacity: 1;
+    }
+
+    .box {
+      opacity: 0;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .inview .media {
+      opacity: 1;
+    }
+
+    .media {
+      -webkit-transition: opacity .5s;
+      opacity: 0;
+      -webkit-backface-visibility: hidden;
+    }
+
+    section {
+      position: relative;
+      height: 400px;
+      display: block;
+      margin: 200px;
+    }
+    section:first-child {
+      margin-top: 100px;
+    }
+    .media {
+      position: absolute;
+      background-size: contain;
+      right: 0px;
+      left: 0px;
+      top: 0px;
+      bottom: 0px;
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+    }
+    .box {
+      position: absolute;
+      width: 300px;
+      bottom: -100px;
+      left: 100px;
+      padding: 36px;
+      text-align: center;
+    }
+    html {
+      font-family: Helvetica, helvetica, sans-serif;
+      line-height: 1.6em;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+    }
+    p {
+      font-size: 16px;
+    }
+    h2, h3, p {
+      margin-bottom: 1.6em;
+      font-weight: normal;
+    }
+    button {
+      border: none;
+      outline: none;
+      padding: 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      position: absolute;
+      left: -45px;
+      top: -45px;
+    }
+    section:nth-child(6n+0) p, section:nth-child(7n+0) h3 {
+      display: none;
+    }
+    section:nth-child(4n+0) button {
+      bottom: -45px;
+      top: initial;
+    }
+    section:nth-child(even) button {
+       right: -45px;
+       left: initial;
+    }
+    section:nth-child(4n+0) .box {
+      top: -50px;
+      bottom: initial;
+    }
+    section:nth-child(odd) .box {
+      right: 100px;
+      left: auto;
+    }
+    section:nth-child(odd) .media {
+      background-position: 100% 100%;
+    }
+    </style>
+    <div id="mount"></div>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+  </body>
+</html>

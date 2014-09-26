@@ -1,0 +1,19 @@
+
+
+{{ for img, i in @images : }}
+
+
+
+  <section >
+    <div  class="spring media" style="background-image:url('{{- img.url }}')"></div>
+
+    <div class="box" style="background-color:{{- img.colors[0] }};">
+      <h2 style="color: {{- img.colors[1] }};">Holy ball smoking batman</h2>
+      <h3 style="color: {{- img.colors[2] }};">Post From <a style="color:;">Twitter</a></h3>
+      <p style="color: {{- img.colors[3] }};">Once upon a vibrant color, there lay a scarlet letter eyeing Mr Ive's unabashed manhood with wanton desire.</p>
+      <button class="spring" style="background-color:{{- img.colors[4] }}; color: {{- img.colors[0] }};">Buy</button>
+    </div>
+
+  </section>
+
+{{ end }}
