@@ -43,12 +43,13 @@ module.exports = ->
     browserify:
       dist:
         files:
-          'dist/browser.js': ['src/browser.coffee']
+          'dist/browser.js': ['src/springs.coffee']
         options:
           transform: ['coffeeify']
           browserifyOptions:
             extensions: ['.coffee']
             fullPaths: false
+            standalone: 'GSSSprings'
 
     # JavaScript minification for the browser
     #uglify:

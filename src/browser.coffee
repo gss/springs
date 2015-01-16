@@ -1,1 +1,0 @@
-global.GSSSprings = require './springs'
