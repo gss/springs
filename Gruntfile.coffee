@@ -31,23 +31,33 @@ module.exports = ->
   @initConfig
     pkg: @file.readJSON 'package.json'
 
-    componentbuild:
-      'gss-springs':
+    #componentbuild:
+    #  'gss-springs':
+    #    options:
+    #      name: 'gss-springs'
+    #    src: '.'
+    #    dest: 'browser'
+    #    scripts: true
+    #    styles: false
+
+    browserify:
+      dist:
+        files:
+          'dist/browser.js': ['src/browser.coffee']
         options:
-          name: 'gss-springs'
-        src: '.'
-        dest: 'browser'
-        scripts: true
-        styles: false
+          transform: ['coffeeify']
+          browserifyOptions:
+            extensions: ['.coffee']
+            fullPaths: false
 
     # JavaScript minification for the browser
-    uglify:
-      options:
-        report: 'min'
-      chromatose:
-        files:
-          './browser/springs.min.js': ['./browser/springs.js']
-
+    #uglify:
+    #  options:
+    #    report: 'min'
+    #  chromatose:
+    #    files:
+    #      './browser/gss-springs.min.js': ['./browser/gss-springs.js']
+    #
     # Automated recompilation and testing when developing
     watch:
       files: ['**/*.coffee']
@@ -119,7 +129,7 @@ module.exports = ->
     #grunt.file.write output+"/manifest.yml", yaml.safeDump manifest
 
   # Grunt plugins used for building
-  @loadNpmTasks 'grunt-component-build'
+  @loadNpmTasks 'grunt-browserify'
   @loadNpmTasks 'grunt-contrib-uglify'
 
   # Grunt plugins used for testing
@@ -128,6 +138,6 @@ module.exports = ->
   @loadNpmTasks 'grunt-mocha-phantomjs'
   @loadNpmTasks 'grunt-contrib-watch'
 
-  @registerTask 'build', ['coffee',  'componentbuild', 'colors',  'uglify']
-  @registerTask 'test', ['build', 'cafemocha', 'mocha_phantomjs']
+  @registerTask 'build', ['coffee',  'browserify', 'colors']
+  @registerTask 'test', ['build', 'mocha_phantomjs']
   @registerTask 'default', ['build']

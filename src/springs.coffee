@@ -62,7 +62,7 @@ class Springs
 
   constructor: ->
     @springs = []
-    @springsByEvent = {}
+    @springsByEvent = {click:[],inview:[]}
     @springSystem = new rebound.SpringSystem()
 
     document.addEventListener 'DOMContentLoaded', =>
@@ -93,7 +93,8 @@ class Springs
 
   checkInViews: () =>
 
-    len = @springsByEvent.inview.length
+    len = @springsByEvent?.inview?.length
+    return unless len
     i = 0
 
     e = new CustomEvent 'inview', { detail: {}, bubbles: false, cancelable: true}
